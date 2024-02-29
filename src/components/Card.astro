@@ -1,0 +1,75 @@
+---
+interface Props {
+  name: string;
+  image: string;
+  description: string;
+  tecnologies: any[];
+  demoURL: string;
+}
+
+const { name, image, description, tecnologies, demoURL } = Astro.props;
+import Tag from "./Tag.astro";
+import Button from "./Button.astro";
+---
+
+<article class="card">
+  <div class="img-container">
+    <img src={image} alt={description.split("", 3).join("")} />
+  </div>
+  <div class="card-body">
+    <div class="info">
+      <h2 class="card-name">{name}</h2>
+      <p class="card-description">{description}</p>
+      <div class="tecnologies">
+        {tecnologies || ""}
+      </div>
+    </div>
+    <div class="btn">
+      <Button url={demoURL} title="View Demo" />
+    </div>
+  </div>
+</article>
+
+<style>
+  .card {
+    display: flex;
+    gap: 50px;
+  }
+  .img-container {
+    border-radius: 10px;
+    min-width: 500px;
+    height: 300px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: 16/9;
+    }
+  }
+  .card-body {
+    .info {
+      .card-name {
+        color: var(--text);
+        font-size: 30px;
+      }
+      .card-description {
+        margin-left: 20px;
+        line-height: 1.7;
+      }
+    }
+
+    .btn {
+      display: flex;
+      justify-content: end;
+      .anchor-demo {
+        padding: 8px 14px;
+        border-radius: 20px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        background: #1a1ae5;
+      }
+    }
+  }
+</style>
