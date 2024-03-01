@@ -3,8 +3,9 @@ const { url, title } = Astro.props;
 ---
 
 <a href={url} target="_blank" rel="noreferrer" class="anchor">
-  <slot />
+  <slot name="1" />
   {title}
+  <slot name="2" />
 </a>
 
 <style>
