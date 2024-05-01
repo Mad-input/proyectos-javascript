@@ -218,9 +218,8 @@ import "@fontsource/poppins";
   const containerSeats = document.querySelector(".seats"),
     priceMovie = document.getElementById("priceMovie"),
     countMovie = document.getElementById("countMovie"),
-    selectMovie = document.getElementById("select");
-  let valueSelect: any,
-    count = 0,
+    selectMovie = document.getElementById("select") as HTMLInputElement;
+  let count = 0,
     selected = 0,
     isSelecting = false;
 
@@ -261,7 +260,7 @@ import "@fontsource/poppins";
               selectedMovies.splice(indexToRemove, 1);
             }
           } else {
-            seatHTML.classList.toggle("selected");
+            seatHTML.classList.add("selected");
             //Seleccionar valores de la información
             selected++;
             count += +selectMovie.value;
@@ -306,7 +305,7 @@ import "@fontsource/poppins";
     renderOfStorage();
 
     // Guardar el valor del select en local storage
-    selectMovie.value = localStorage.getItem("value") || 10;
+    selectMovie.value = localStorage.getItem("value") || "10";
     selectMovie.addEventListener("change", () => {
       localStorage.setItem("value", selectMovie.value);
       renderOfStorage();
