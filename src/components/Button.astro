@@ -1,8 +1,8 @@
 ---
-const { url, title } = Astro.props;
+const { url, title, target } = Astro.props;
 ---
 
-<a href={url} target="_blank" rel="noreferrer" class="anchor">
+<a href={url} target={target} rel="noreferrer" class="anchor">
   <slot name="1" />
   {title}
   <slot name="2" />
