@@ -25,7 +25,7 @@ Un sistema interactivo de gestión de asientos para un cine o auditorio. Permite
 2. Abre el archivo `index.html` en tu navegador.
 3. ¡Explora y selecciona tus asientos!
 
-## 2. Aplicación para Crear Equipos Aleatoriamente <img src="/favRandom.svg" width="35">
+## 2. Aplicación para Crear Equipos Aleatoriamente <img src="./public/favRandom.svg" width="35">
 
 Esta aplicación proporciona una manera fácil y rápida de crear equipos aleatorios a partir de una lista de ítems. Ya sea para organizar grupos de trabajo, equipos deportivos, o cualquier otro tipo de división en grupos, esta aplicación te permite generar equipos de forma automática y aleatoria.
 
