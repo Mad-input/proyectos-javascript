@@ -1,0 +1,360 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Create Random Teams" url="/favRandom.svg">
+  <main>
+    <div class="header_main">
+      <h1 class="title">Create Random Teams</h1>
+    </div>
+    <section class="items"></section>
+    <section class="add-item">
+      <button id="createTeam">Create Teams</button>
+      <form id="formAdd">
+        <input
+          type="text"
+          id="itemValue"
+          placeholder="Some title..."
+          autocomplete="off"
+        />
+        <button id="addItem">
+          <svg width="30px" height="30px" viewBox="0 0 32 32">
+            <title>plus</title>
+            <desc>Created with Sketch Beta.</desc>
+            <defs></defs>
+            <g id="Page-1" stroke-width="1">
+              <g id="Icon-Set" transform="translate(-360.000000, -1035.000000)">
+                <path
+                  d="M388,1053 L378,1053 L378,1063 C378,1064.1 377.104,1065 376,1065 C374.896,1065 374,1064.1 374,1063 L374,1053 L364,1053 C362.896,1053 362,1052.1 362,1051 C362,1049.9 362.896,1049 364,1049 L374,1049 L374,1039 C374,1037.9 374.896,1037 376,1037 C377.104,1037 378,1037.9 378,1039 L378,1049 L388,1049 C389.104,1049 390,1049.9 390,1051 C390,1052.1 389.104,1053 388,1053 L388,1053 Z M388,1047 L380,1047 L380,1039 C380,1036.79 378.209,1035 376,1035 C373.791,1035 372,1036.79 372,1039 L372,1047 L364,1047 C361.791,1047 360,1048.79 360,1051 C360,1053.21 361.791,1055 364,1055 L372,1055 L372,1063 C372,1065.21 373.791,1067 376,1067 C378.209,1067 380,1065.21 380,1063 L380,1055 L388,1055 C390.209,1055 392,1053.21 392,1051 C392,1048.79 390.209,1047 388,1047 L388,1047 Z"
+                  id="plus"></path>
+              </g>
+            </g>
+          </svg>
+        </button>
+      </form>
+      <label>
+        <small> Team length </small>
+        <input type="number" min="2" value="2" id="lengthTeam" />
+      </label>
+    </section>
+    <section class="teams"></section>
+  </main>
+</Layout>
+
+<style>
+  :root {
+    --bg: #e9ebf5;
+    --bd-c: #dbe1e6;
+    --radius: 5px;
+  }
+
+  /* montserrat-latin-wght-normal */
+  @font-face {
+    font-family: "Montserrat Variable";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 900;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/montserrat:vf@latest/latin-wght-normal.woff2)
+      format("woff2-variations");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+      U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122,
+      U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #222;
+    font-family: "Montserrat Variable";
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg);
+    padding: 20px;
+    .alert {
+      position: absolute;
+      top: 10px;
+      width: fit-content;
+      height: fit-content;
+      margin: auto;
+      padding: 20px 25px;
+      border-radius: var(--radius);
+      animation: fadeIn 0.2s ease-in-out;
+      font-family: "Montserrat Variable";
+
+      &.error {
+        background: #eb6565;
+        color: #28282a;
+      }
+      &.ok {
+        background: #59b35f;
+        color: #131414;
+      }
+    }
+  }
+
+  main {
+    .header_main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      .title {
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+    }
+    .items {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(100px, 200px));
+      grid-auto-rows: 50px;
+      gap: 10px;
+      place-content: center;
+      padding: 40px;
+      .item {
+        background: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 5px;
+        padding: 10px;
+        border: 2px solid var(--bd-c);
+        animation: fadeIn 0.5s ease-in-out;
+        strong {
+          font-size: 18px;
+          font-weight: 500;
+        }
+        .btnRemoveItem {
+          border: none;
+          background: none;
+          cursor: pointer;
+          color: currentColor;
+          svg {
+            width: 30px;
+            height: 30px;
+            vertical-align: top;
+            &:hover {
+              scale: 0.9;
+              path {
+                stroke: #e44949;
+              }
+            }
+            path {
+              stroke: var(--bd-c);
+              transition: 0.3s;
+            }
+          }
+        }
+      }
+    }
+
+    .add-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      padding: 10px;
+      height: 70px;
+      margin-bottom: 30px;
+      #formAdd {
+        display: flex;
+        height: 100%;
+      }
+      & > label {
+        small {
+          font-size: 18px;
+        }
+        input {
+          font-size: 18px;
+          width: 60px;
+          padding: 10px;
+          outline: none;
+          border: 2px solid var(--bd-c);
+          border-radius: var(--radius);
+          &:focus {
+            border-color: #3c4474;
+          }
+        }
+      }
+      #createTeam {
+        display: inline-block;
+        height: 100%;
+        padding: 10px 20px;
+        background: #3c4474;
+        border: none;
+        font-size: 16px;
+        border-radius: var(--radius);
+        color: #fff;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+        &:hover {
+          scale: 0.95;
+          background: #666fa7;
+        }
+      }
+      #itemValue {
+        border: 2px solid var(--bd-c);
+        border-radius: var(--radius);
+        outline: none;
+        transition: 0.3s ease-in-out;
+        padding: 10px;
+        &:focus {
+          border-color: #3c4474;
+        }
+      }
+
+      #addItem {
+        background: #fff;
+        border: 2px solid var(--bd-c);
+        padding: 10px;
+        cursor: pointer;
+        border-radius: var(--radius);
+        transition: 0.2s ease-in-out;
+
+        svg {
+          width: 25px;
+          height: 25px;
+          fill: var(--bd-c);
+        }
+        &:hover {
+          border-color: #3c4474;
+          svg {
+            fill: #3c4474;
+          }
+        }
+      }
+    }
+
+    .teams {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding: 30px 0;
+
+      .team {
+        background: var(--bg);
+        padding: 25px;
+        border-radius: var(--radius);
+        box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
+
+        .header_team {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 15px;
+          h2 {
+            font-weight: normal;
+          }
+          .btnDeleteTeam {
+            border: none;
+            background: none;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s;
+
+            &::after {
+              content: "Delete Team";
+              font-family: "Montserrat Variable";
+              display: inline-block;
+              position: absolute;
+              left: 90%;
+              padding: 2px;
+              width: fit-content;
+              white-space: nowrap;
+              font-size: 12px;
+              background: rgba(150, 10, 40, 0.8);
+              color: #fff;
+              border-radius: var(--radius);
+              opacity: 0;
+              transition: 0.2s ease-in-out;
+              pointer-events: none;
+            }
+            &:hover::after {
+              opacity: 1;
+              left: 100%;
+            }
+          }
+        }
+
+        li {
+          list-style: none;
+          padding: 10px 0;
+          width: 250px;
+          text-align: center;
+          &:not(:last-child) {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      transform: translateX(-20px);
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  import { utilsApp } from "../jsProjects/utils";
+  const items = JSON.parse(localStorage.getItem("items")) || [];
+  const teams = JSON.parse(localStorage.getItem("teams")) || [];
+
+  // DOM Elements
+  const $ = (value: string) => document.querySelector(value);
+
+  const btnAdd = $("#addItem"),
+    inputAdd = $("#itemValue"),
+    containtItems = $(".items"),
+    btnCreateTeams = $("#createTeam"),
+    lengthTeam = $("#lengthTeam"),
+    formAdd = $("#formAdd");
+
+  const selectBtnElements = () => {
+    const btnsDeleteTeam = document.querySelectorAll(".btnDeleteTeam");
+    const btnDeleteItem = document.querySelectorAll(".btnRemoveItem");
+
+    if (items.length > 0) {
+      btnDeleteItem.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          utilsApp.deleteItem(items, btn);
+        });
+      });
+    }
+    if (teams.length > 0) {
+      btnsDeleteTeam.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          utilsApp.deleteTeam(teams, btn);
+          selectBtnElements();
+        });
+      });
+    }
+  };
+  window.addEventListener("DOMContentLoaded", () => selectBtnElements());
+
+  formAdd.addEventListener("submit", (e) => {
+    e.preventDefault();
+    utilsApp.createItem(containtItems, inputAdd, items);
+    selectBtnElements();
+  });
+
+  btnCreateTeams.addEventListener("click", () => {
+    utilsApp.createTeams(teams, items, lengthTeam.value);
+    selectBtnElements();
+  });
+
+  utilsApp.renderItems(items);
+  utilsApp.renderTeamsHTML(teams);
+</script>

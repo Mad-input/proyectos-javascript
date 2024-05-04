@@ -7,12 +7,12 @@ import GithubLogo from "../components/GithubLogo.astro";
 import Button from "../components/Button.astro";
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Welcome to Astro." url="/favicon.svg">
   <header>
     <h1>
       <div>
         <span class="item">2</span><span class="item">0</span>
-      </div> proyectos con javascript (Challenge)
+      </div> PROJECTS WITH JAVASCRIPT (Challenge)
     </h1>
     <div class="user">
       <strong>By Miguel Contreras</strong>
@@ -86,6 +86,11 @@ import Button from "../components/Button.astro";
   }
   main {
     max-width: 60%;
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
   }
 
   @keyframes transforms {

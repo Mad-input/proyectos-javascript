@@ -1,9 +1,9 @@
 export const projects = [
   {
     projectName: "Movie - Seat",
-    imageUrl: "/p1.webp",
+    imageUrl: "/imgsProjects/p1.webp",
     description:
-      "Un sistema interactivo de gestión de asientos para un cine o auditorio. Permite a los usuarios seleccionar y deseleccionar asientos, mostrando información en tiempo real sobre la cantidad de asientos seleccionados y el precio total.",
+      "An interactive seating management system for a cinema or auditorium. It allows users to select and deselect seats, displaying real-time information on the number of seats selected and the total price.",
     tecnologies: [
       { name: "Astro", icon: "/astro.svg" },
       { name: "HTML", icon: "/html.svg" },
@@ -11,5 +11,18 @@ export const projects = [
       { name: "Javascript", icon: "/javascript.svg" },
     ],
     demo: "/movie-seat",
+  },
+  {
+    projectName: "Create Random Teams",
+    imageUrl: "/imgsProjects/p2.png",
+    description:
+      "This app provides a quick and easy way to create random teams from a list of items. Whether it is to organize work groups, sports teams, or any other type of division into groups, this application allows you to generate teams automatically and randomly.",
+    tecnologies: [
+      { name: "Astro", icon: "/astro.svg" },
+      { name: "HTML", icon: "/html.svg" },
+      { name: "CSS", icon: "/css.svg" },
+      { name: "Javascript", icon: "/javascript.svg" },
+    ],
+    demo: "/random-teams",
   },
 ];
