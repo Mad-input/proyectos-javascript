@@ -6,6 +6,12 @@ import Layout from "../layouts/Layout.astro";
   <main>
     <div class="header_main">
       <h1 class="title">Create Random Teams</h1>
+      <button class="btnChangeTheme">
+        <div class="wrapper">
+          <img src="/moon.svg" alt="moon icon" />
+          <img src="/sun.svg" alt="sun icon" />
+        </div>
+      </button>
     </div>
     <section class="items"></section>
     <section class="add-item">
@@ -33,7 +39,7 @@ import Layout from "../layouts/Layout.astro";
         </button>
       </form>
       <label>
-        <small> Team length </small>
+        <small> Team length: </small>
         <input type="number" min="2" value="2" id="lengthTeam" />
       </label>
     </section>
@@ -64,7 +70,6 @@ import Layout from "../layouts/Layout.astro";
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #222;
     font-family: "Montserrat Variable";
   }
 
@@ -75,6 +80,8 @@ import Layout from "../layouts/Layout.astro";
     min-height: 100vh;
     background: #e9ebf5;
     padding: 20px;
+    transition: 0.3s ease-in-out;
+    color: #171717;
     .alert {
       position: absolute;
       top: 10px;
@@ -93,6 +100,86 @@ import Layout from "../layouts/Layout.astro";
       &.ok {
         background: #59b35f;
         color: #131414;
+      }
+    }
+
+    .btnChangeTheme {
+      --size: 40px;
+      position: relative;
+      width: var(--size);
+      height: var(--size);
+      overflow: hidden;
+      border-radius: 100%;
+      border: none;
+      /* padding: 15px; */
+      cursor: pointer;
+      background: #fff;
+      .wrapper {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+        top: 1px;
+        left: calc(50% - 50px);
+        transition: 0.3s;
+
+        img {
+          --size: 35px;
+          width: var(--size);
+          position: absolute;
+          left: calc(50% - var(--size) / 2);
+          vertical-align: top;
+          &:nth-child(2) {
+            bottom: 0;
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+
+    &.dark {
+      background: var(--bg);
+      color: #fff;
+      .btnChangeTheme {
+        background: #485297;
+        .wrapper {
+          transform: rotate(180deg);
+        }
+      }
+
+      main {
+        .items {
+          .item {
+            background: #3c4474;
+          }
+        }
+
+        .add-item {
+          & > label {
+            input {
+              background: #3c4474;
+              color: #fff;
+            }
+          }
+
+          #itemValue {
+            background: #3c4474;
+            color: #fff;
+            &::placeholder {
+              color: #fff;
+            }
+          }
+
+          #addItem {
+            background: #3c4474;
+            &:hover {
+              border-color: #59b35f;
+              svg {
+                fill: #59b35f;
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -163,6 +250,7 @@ import Layout from "../layouts/Layout.astro";
       margin-bottom: 30px;
       #formAdd {
         display: flex;
+        gap: 8px;
         height: 100%;
       }
       & > label {
@@ -243,6 +331,7 @@ import Layout from "../layouts/Layout.astro";
         padding: 25px;
         border-radius: var(--radius);
         box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
+        color: #222;
 
         .header_team {
           display: flex;
@@ -319,7 +408,8 @@ import Layout from "../layouts/Layout.astro";
     containtItems = $(".items"),
     btnCreateTeams = $("#createTeam"),
     lengthTeam = $("#lengthTeam"),
-    formAdd = $("#formAdd");
+    formAdd = $("#formAdd"),
+    btnChangeTheme = $(".btnChangeTheme");
 
   const selectBtnElements = () => {
     const btnsDeleteTeam = document.querySelectorAll(".btnDeleteTeam");
@@ -356,4 +446,20 @@ import Layout from "../layouts/Layout.astro";
 
   utilsApp.renderItems(items);
   utilsApp.renderTeamsHTML(teams);
+
+  //Change Theme
+  const changeTheme = (theme: string) => {
+    const body = document.body;
+    localStorage.setItem("theme", theme);
+    body.setAttribute("class", theme);
+  };
+
+  const theme = localStorage.getItem("theme") || "light";
+  changeTheme(theme);
+
+  btnChangeTheme.addEventListener("click", () => {
+    const theme = localStorage.getItem("theme") || "light";
+    if (theme === "dark") changeTheme("light");
+    else changeTheme("dark");
+  });
 </script>
