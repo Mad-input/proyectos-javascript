@@ -9,6 +9,7 @@ export class utilsApp {
     if (title.value === "") return this.showAlert("Complete Field", "error");
 
     element.append(this.ResItem(title.value));
+    // Guardar cada título en items para guadar en localstorage
     items.push(title.value);
     title.value = "";
     this.saveInStorge("items", items);
@@ -41,6 +42,7 @@ export class utilsApp {
     const root = el.parentElement;
     const id = root.dataset.id;
     root.remove();
+    // Si el elemento se encuentra en la lista se busca el id y se remueve
     if (items.includes(id)) {
       const newid = items.indexOf(id);
       items.splice(newid, 1);
@@ -121,7 +123,7 @@ export class utilsApp {
           </svg>
           </button>
         </div>`;
-
+        // por cada título del team agregarlo al elmento del DOM
         for (const item of team) {
           teamElemet.innerHTML += `
             <li><strong>${item}</strong></li>
@@ -137,7 +139,8 @@ export class utilsApp {
     const containtItems = document.querySelector(".items");
     containtItems.innerHTML = "";
     for (const item of items) {
-      containtItems.append(this.ResItem(item));
+      const itemElement = this.ResItem(item)
+      containtItems.append(itemElement);
     }
   }
 
