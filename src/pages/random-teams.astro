@@ -435,12 +435,16 @@ import Layout from "../layouts/Layout.astro";
 
   formAdd.addEventListener("submit", (e) => {
     e.preventDefault();
-    utilsApp.createItem(containtItems, inputAdd, items);
+    utilsApp.createItem(containtItems as HTMLElement, inputAdd, items);
     selectBtnElements();
   });
 
   btnCreateTeams.addEventListener("click", () => {
-    utilsApp.createTeams(teams, items, lengthTeam.value);
+    utilsApp.createTeams(
+      teams,
+      items,
+      (lengthTeam as HTMLInputElement).value as unknown as number
+    );
     selectBtnElements();
   });
 

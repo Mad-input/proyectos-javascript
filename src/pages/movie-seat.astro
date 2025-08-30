@@ -290,7 +290,7 @@ import "@fontsource/poppins";
       for (const i of selectedMovies) {
         let seatsHTML = Array.from(document.querySelectorAll(".seat"));
         for (const seatHTML of seatsHTML) {
-          let id = +seatHTML.dataset.id;
+          let id = +(seatHTML as HTMLElement).dataset.id;
           if (id == i) {
             let value = localStorage.getItem("value") || selectMovie.value;
             seatHTML.classList.add("selected");
