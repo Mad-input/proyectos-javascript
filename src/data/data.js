@@ -7,7 +7,7 @@ export const projects = [
     tecnologies: [
       { name: "Astro", icon: "/astro.svg" },
       { name: "HTML", icon: "/html.svg" },
-      { name: "CSS", icon: "/css.svg" },
+      { name: "CSS", icon: "/css.png" },
       { name: "Javascript", icon: "/javascript.svg" },
     ],
     demo: "/movie-seat",
@@ -20,9 +20,22 @@ export const projects = [
     tecnologies: [
       { name: "Astro", icon: "/astro.svg" },
       { name: "HTML", icon: "/html.svg" },
-      { name: "CSS", icon: "/css.svg" },
+      { name: "CSS", icon: "/css.png" },
       { name: "Javascript", icon: "/javascript.svg" },
     ],
     demo: "/random-teams",
+  },
+  {
+    projectName: "Country Quiz",
+    imageUrl: "/imgsProjects/p3.png",
+    description:
+      "A fun and interactive quiz game that tests your knowledge of world capitals. Answer questions about the capitals of various countries and see how many you can get right!",
+    tecnologies: [
+      { name: "Astro", icon: "/astro.svg" },
+      { name: "HTML", icon: "/html.svg" },
+      { name: "CSS", icon: "/css.png" },
+      { name: "Javascript", icon: "/javascript.svg" },
+    ],
+    demo: "/country-quiz",
   },
 ];
